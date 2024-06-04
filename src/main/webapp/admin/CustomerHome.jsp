@@ -1,0 +1,113 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.example.model.product"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Example</title>
+    
+    <!-- Bootstrap CSS -->
+		    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-TpCbqN6Fw2hej6DflCTzpkJyX14+Xr3NsIZWU+u8Tu7i7wKpZBuDm7bIk9tPt+fPkrDg0ojFhpc+azlr0ovRQw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap JS bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-2L5wJ8kq38eAMkGqDpSOc6Ff1fAWIkCG71b45OPWahFujnJ+41v3QSkpr3a/v5yI" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-image: url('../bg4.jpg'); background-size: cover;">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+            <img src="../logo2.jpg" alt="logo" class="nav_logo" style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden;">
+        </a>
+
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navbar items and search bar -->
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav" style="flex-grow: 1;">
+                <li class="nav-item"><a class="nav-link" href="CustomerHome.jsp" style="color: white; font-weight: bold;">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="CustomerProfile.jsp" style="color: white; font-weight: bold;">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="Cart.jsp" style="color: white; font-weight: bold;">Cart</a></li>
+                <li class="nav-item"><a class="nav-link" href="wishlist.jsp" style="color: white; font-weight: bold;">WishList</a></li>
+                <li class="nav-item"><a class="nav-link" href="OrdersHistory.jsp" style="color: white; font-weight: bold;">Customer Orders</a></li>
+                <li class="nav-item"><a class="nav-link" href="viewRating.jsp" style="color: white; font-weight: bold;">Rating</a></li>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; font-weight: bold;">FeedBack</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-image: url('../bg4.jpg'); background-size: cover;">
+                        <li><a class="dropdown-item" href="AddFeedBack.jsp"style="color: dark; font-weight: bold;" >Add</a></li>
+                        <li><a class="dropdown-item" href="ViewFeedback.jsp" style="color: dark; font-weight: bold;">View</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="Logout.jsp" style="color: white; font-weight: bold;">Logout</a></li>
+            </ul>
+            <!-- Search bar -->
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="color: dark; font-weight: bold;">
+                <button class="btn btn-outline-light" type="submit" style="color: Dark;font-weight: bold;">
+    <i class="fas fa-search"></i>
+</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+			<%
+			product Product = new product();
+			List<product> Listproducts=new ArrayList<product>();  //empty product list
+			
+			String search = request.getParameter("search");
+			if(search==null){  //without search
+			    
+			    Listproducts = Product.getAllProducts(null);
+			    System.out.print(Listproducts);
+			    System.out.println("AAAAA");
+			}else{ //with search
+			    System.out.print("search: " + search);
+			    Listproducts = Product.getAllProducts(search);
+			    System.out.println("BBBBB");
+			}
+			%>
+
+<div class="container mt-4">
+    <div class="row">
+        <%
+        int slno = 0;
+        for (product productOb : Listproducts) {
+        %>
+        <div class="col-md-3 mb-4">
+            <div class="card" style="background-color:">
+                <img src="../uploads/<%=productOb.getProductImage1()%>" class="img-thumbnail mx-auto d-block" alt="notfound"
+							style="width: 260px; height: 180px">
+                <div class="card-body" style="max-height: 120px; overflow: hidden;">
+                    <h3 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%=productOb.getProductName()%></h3>
+                    <p class="card-text"><%=productOb.getDescription()%></p>
+                    <p class="card-text"><strong>Cost:</strong> <%=productOb.getCost()%></p>
+                </div>
+               <div class="card-footer d-flex justify-content-between">
+				    <a href='/ECommerceProject/AddToWishListServlet?productCode=<%=productOb.getProductCode()%>' class='text-danger'><i class="fas fa-heart"></i></a>
+				    <a href='/ECommerceProject/admin/Review.jsp?productCode=<%=productOb.getProductCode() %>' class='text-dark'><i class="fas fa-eye"></i></a>
+				    <a href='/ECommerceProject/AddToCartServlet?productCode=<%=productOb.getProductCode()%>' class='text-purple'><i class="fas fa-shopping-cart"></i></a>
+				</div>
+            </div>
+        </div>
+        <%
+        }
+        %>
+    </div>
+</div>
+
+<div class="container-fluid" style="background-color:#B4AEA6; background-size: cover;">
+    <jsp:include page="../footer.jsp" />
+</div>
+</body>
+</html>

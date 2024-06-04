@@ -1,0 +1,197 @@
+<style>
+* {
+	background:url("../bg4.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 0px;
+	margin: 0px 0px;
+}
+nav {
+	position: fixed;
+	display: flex;
+	width: 100%;
+	height: auto;
+	z-index:1;
+}
+.leftcol {
+width: 60%;
+height: auto;	
+display: flex;
+text-align: end;
+padding: 1.5%;
+background: repeating-linear-gradient(to right,darkorchid,deeppink);
+}
+.rigcol {
+	width: 40%;
+	height: auto;
+	background: repeating-linear-gradient(to right,deeppink,darkorchid);
+	text-align: right;
+}
+.nav_logo {
+	width: 10%;
+	height: 100%;
+	padding: 1%;
+	margin-left: 10%;
+	border: 1px solid white;
+	border-radius: 20%;
+}
+.nav_search {
+	width: 85%;
+	height: auto;
+	padding: 2% 2% 2% 3%;
+	color: red;
+	font-size: 120%;
+}
+.search_submit{
+	width:20px;
+	height:auto;
+	color: white;
+	font-weight: 400;
+	font-size:130%;
+	margin-top:10px;
+	background:none;
+	border: none;
+}
+.search_submit:hover {
+	font-weight: bolder;
+}
+.nav_sbar {
+	width: 80%;
+	height: auto;
+	font-size: 120%;
+	color: red ;
+	background: white;
+	border: none;
+	border-radius: 15px;
+	
+}
+.menu_line {
+	width: 80%;
+	height: auto;
+	padding: 8% 0% 0% 0%;
+}
+
+.menu_line ul {
+	display: flex;
+	border-radius: 50px 50px 50px 50px;
+	background:white;
+}
+.menu_line ul li {
+	background: none;
+	list-style: none;
+	padding: 0% 8% 0% 8%;
+}
+.menu_line ul li a {
+	position: relative;
+	text-decoration: none;
+	color: deeppink;
+	font-size: 140%;
+	font-weight: 600;
+}
+.menu_line ul li:hover {
+	color: white;
+	background: darkorchid;
+	border-radius: 20px;
+}
+.menu_line ul li a:hover {
+	text-decoration: none;
+	color: white;
+	font-size: 150%;
+	font-weight: 600;
+	margin:2px;
+}
+
+.drop-menu {
+	z-index: 0;
+	display: none;
+	position: absolute;
+	text-align: center;
+	width: auto;
+	height: auto;
+	color: darkblue;
+	border-radius: 0% 0 20% 20%;
+	margin-left: -38px;
+	background:repeating-linear-gradient(to right,deeppink,darkorchid);
+}
+.drop-menu ul {
+	background: none;
+display: block;
+padding: 0px;
+margin: 10px;
+}
+.drop-menu ul li {
+	background: none;
+	color: white;
+}
+.drop-menu ul li a {
+	color: white;
+	background:none;
+	text-align: center;
+	margin: 9px;
+	margin-left: -5px;
+}
+.drop-menu ul li:hover {
+	background: none;
+}
+.drop-menu ul li a:hover {
+	font-size: 140%;	
+	color: white;
+	background: darkblue;
+	border-radius: 20px;
+	padding: 4px;
+	margin: 9px;
+	margin-left: -5px;
+}
+.menu_line ul li:hover .drop-menu{
+	display: block;
+}
+
+
+@media screen and (max-width: 600px) {
+  nav {
+	  width: 100%;
+	  height: auto;
+	  display: block;
+	  background: repeating-linear-gradient(to right,darkorchid,deeppink);
+  }
+  .leftcol {
+	  width: 100%;
+	  height: auto;
+	  background: none;
+  }
+  .nav_logo {
+	width: 10%;
+	height: 100%;
+	padding: 1%;
+	margin-left: 10%;
+	margin-top: 15px;
+	border: 1px solid white;
+	border-radius: 20%;
+} 
+.search_submit{
+	width:20px;
+	height:auto;
+	color: white;
+	font-weight: 400;
+	font-size:130%;
+	margin-top:10px;
+	background:none;
+	border: none;
+}
+  .rigcol {
+	  width: 100%;
+	  height: auto;
+	  background: none;
+  }
+  .menu_line{
+	  width: 100%;
+	  height: auto;
+	  padding: 0px 20px 0px 20px;
+  }
+  .menu_line ul li {
+	background: none;
+	list-style: none;
+	padding: 0% 2% 0% 2%;
+}
+}
+</style>
